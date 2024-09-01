@@ -9,7 +9,7 @@ resource "aws_vpc" "my_vpc_project1" {
 resource "aws_subnet" "product1" {
     vpc_id     = aws_vpc.my_vpc_project1.id
     cidr_block = "10.0.1.0/24"
-    availability_zone = "us-east-1"  # Specify the desired Availability Zone
+    availability_zone = "us-east-1a"   # Specify the desired Availability Zone
     tags = {
         Name = "product1"
     }
@@ -77,7 +77,7 @@ resource "aws_instance" "newproject" {
     instance_type          = "t2.medium" #change in your case with existing key
     key_name               = "test1245"
     subnet_id              = aws_subnet.product1.id
-    availability_zone      = "us-east-1"  # Specify a different Availability Zone
+    availability_zone =    "us-east-1a"   # Specify a different Availability Zone
     associate_public_ip_address = true  # Add this line to associate a public IP address    
     vpc_security_group_ids = [aws_security_group.Project-sg10.id]
     user_data              = templatefile("./deploy.sh", {})
